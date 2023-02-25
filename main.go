@@ -218,11 +218,17 @@ func main() {
 
 func initialize() {
 	initRequest := InitRequest{
-		SecretShares:      vaultSecretShares,
-		SecretThreshold:   vaultSecretThreshold,
 		StoredShares:      vaultStoredShares,
 		RecoveryShares:    vaultRecoveryShares,
 		RecoveryThreshold: vaultRecoveryThreshold,
+	}
+
+	// allow optional secret shares/threshold to support GCP KMS on newer version of Vault
+	if vaultSecretShares != 0 {
+		initRequest.SecretShares = vaultSecretShares
+	}
+	if vaultSecretThreshold != 0 {
+		initRequest.SecretThreshold = vaultSecretThreshold
 	}
 
 	initRequestData, err := json.Marshal(&initRequest)
