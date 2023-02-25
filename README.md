@@ -13,7 +13,7 @@ You can download the code and compile the binary with Go. Alternatively, a
 Docker container is available via the Docker Hub:
 
 ```text
-$ docker pull sethvargo/vault-init
+$ docker pull jcorall/vault-init
 ```
 
 To use this as part of a Kubernetes Vault Deployment:
@@ -21,7 +21,7 @@ To use this as part of a Kubernetes Vault Deployment:
 ```yaml
 containers:
 - name: vault-init
-  image: registry.hub.docker.com/sethvargo/vault-init:0.1.2
+  image: registry.hub.docker.com/jcorall/vault-init:0.3.0
   imagePullPolicy: Always
   env:
   - name: GCS_BUCKET_NAME
