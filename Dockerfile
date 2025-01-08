@@ -1,6 +1,7 @@
-FROM golang:1.15 AS builder
+FROM golang:1.23.4 AS builder
 
-RUN apt-get -qq update && apt-get -yqq install upx
+RUN apt-get -qq update && \
+    apt-get -yqq install curl -y
 
 ENV GO111MODULE=on \
   CGO_ENABLED=0 \
@@ -19,10 +20,6 @@ RUN go build \
   .
 
 RUN strip /bin/vault-init
-RUN upx -q -9 /bin/vault-init
-
-
-
 
 FROM scratch
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
