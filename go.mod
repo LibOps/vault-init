@@ -1,4 +1,4 @@
-module github.com/LibOps/vault-init
+module github.com/libops/vault-init
 
 go 1.23.4
 
